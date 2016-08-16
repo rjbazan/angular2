@@ -1,0 +1,30 @@
+<h1>Got Right what you need</h1>
+<p class="lead">Use the search box below to search for different artists using the Spotify API</p>
+<form action="" novalidate autocomplete="off">
+  <div class="form-group">
+    <input  
+      type="text"
+      name="search"
+      class="form-control"
+      [(ngModel)]="search"
+      (keyup)="searchNow()"
+      placeholder="Search Music..."/>
+  </div>
+</form>
+<div *ngIf="results">
+  <div *ngFor="let artist of results">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search-result well">
+          <h4>
+            <a routerLink="/artist/{{artist.id}}">{{artist.name}}</a>
+          </h4>
+          <div *ngIf="artist.genres.length">
+            <strong>Genres</strong>
+            <span *ngFor="let genre of artist.genres">{{genre}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
